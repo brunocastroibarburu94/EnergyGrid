@@ -20,7 +20,7 @@ winpty docker run --rm -it \
 ${PROJECT_NAME}-image 
 
 # Enter running container
-winpty docker exec -it cel-digital-twin-container bash
+winpty docker exec -it ${PROJECT_NAME}-container bash
 
 # Virtual environment (useful for VSCode autofill features)
 # Open a GitBash console as an administrator.
