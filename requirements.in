@@ -1,0 +1,6 @@
+pandas
+black # Used to format test to conform to PEP standards
+pytest # Allows to run unit and coverage tests
+coverage
+requests
+pyarrow

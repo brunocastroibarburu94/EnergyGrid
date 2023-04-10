@@ -1,0 +1,45 @@
+# This file contains a series of useful bash scripts to run your docker image locally.
+
+PROJECT_NAME=uk-power-grid
+
+# Windows OS
+
+# Build Image
+docker build  -t ${PROJECT_NAME}-image .
+
+# Remove container with same name
+docker rm ${PROJECT_NAME}-container 
+
+# Start container
+winpty docker run --rm -it \
+--mount type=bind,source="$(PWD)",target=/root/project \
+--name ${PROJECT_NAME}-container \
+-p 8031:8031 \
+-p 8032:8032 \
+--entrypoint bash \
+${PROJECT_NAME}-image 
+
+# Enter running container
+winpty docker exec -it cel-digital-twin-container bash
+
+# Virtual environment (useful for VSCode autofill features)
+# Open a GitBash console as an administrator.
+
+# 1. Check which executable you are using
+which python
+# 2. Check that the executable you want works
+/c/Python/Python3.9.8/python --version
+# 3. Create a virtual environment from the executable you want 
+/c/Python/Python3.9.8/python -m venv .venv
+# 4. Activte the virtual environment
+. ./.venv/Scripts/activate
+# 5. Check if the activation worked (you should see the location of the executable in the virtual env)
+which python
+# 6. Install Pip tools to get the pip-sync command (needs admin permissions)
+pip install pip-tools 
+# 7. Sync your virtual environment with the production one
+# pip-sync requirements.txt
+
+# After shutting down docker Vmemm the virtual machine windows process keeps running
+# and it uses a lot of RAM, execute the code below to shut the process down.
+# wsl --shutdown
