@@ -10,7 +10,6 @@ This software suite is designed to be able to run locally in any operative syste
 - GitBash (For windows): Useful command line for Windows users that allows you to run bash scripts (the ones ending in .sh).
 
 ### How to Run Locally ###
-
 1. create your own local_container.sh from local_container.sh.template as the bash script to initialize the container (Mild modifications may be needed for MacOS or Linux)
 1. Make use of the Makefile
 
